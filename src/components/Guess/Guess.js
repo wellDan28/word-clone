@@ -4,12 +4,16 @@ function Guess() {
   const [guess, setGuess] = React.useState("");
 
   const handleGuessChange = (e) => {
-    setGuess(e.target.value);
+    setGuess(e.target.value.toUpperCase());
+    console.log(
+      "🚀 ~ tcl: handleGuessChange ~ tcl: e.target.value.toUpperCase():",
+      e.target.value.toUpperCase()
+    );
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(guess.toUpperCase());
+    console.log(guess);
     setGuess("");
   };
 
@@ -21,7 +25,10 @@ function Guess() {
         type="text"
         value={guess}
         onChange={handleGuessChange}
-        pattern="\w{5,5}"
+        minLength={5}
+        maxLength={5}
+        pattern="[a-zA-Z]{5}"
+        title="5 letter word"
         required
       />
     </form>

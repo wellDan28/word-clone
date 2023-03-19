@@ -5,10 +5,6 @@ function Guess() {
 
   const handleGuessChange = (e) => {
     setGuess(e.target.value.toUpperCase());
-    console.log(
-      "🚀 ~ tcl: handleGuessChange ~ tcl: e.target.value.toUpperCase():",
-      e.target.value.toUpperCase()
-    );
   };
 
   const handleSubmit = (e) => {

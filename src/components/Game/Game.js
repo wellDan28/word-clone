@@ -2,7 +2,7 @@ import React from "react";
 
 import { sample } from "../../utils";
 import { WORDS } from "../../data";
-import Guess from "../Guess";
+import GuessInput from "../GuessInput";
 import GuessResults from "../GuessResults/GuessResults";
 
 // Pick a random word on every pageload.
@@ -23,7 +23,7 @@ function Game() {
   return (
     <>
       <GuessResults guessResults={guessResults} />
-      <Guess onGuess={onGuess} />
+      <GuessInput onGuess={onGuess} />
     </>
   );
 }

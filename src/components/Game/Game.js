@@ -5,7 +5,6 @@ import { WORDS } from "../../data";
 import GuessInput from "../GuessInput";
 import GuessResults from "../GuessResults/GuessResults";
 import { NUM_OF_GUESSES_ALLOWED } from "../../constants";
-import { checkGuess } from "../../game-helpers";
 
 // Pick a random word on every pageload.
 const answer = sample(WORDS);
@@ -20,10 +19,9 @@ function Game() {
   const isDisable = currentGuess === NUM_OF_GUESSES_ALLOWED;
 
   const onGuess = (guess) => {
-    const guessResult = checkGuess(guess, answer);
     setGuessResults((guesses) => {
       const newArray = [...guesses];
-      newArray[currentGuess] = guessResult;
+      newArray[currentGuess] = guess;
       return newArray;
     });
     setCurrentGuess(currentGuess + 1);
@@ -31,7 +29,7 @@ function Game() {
 
   return (
     <>
-      <GuessResults guessResults={guessResults} />
+      <GuessResults guessResults={guessResults} answer={answer} />
       <GuessInput onGuess={onGuess} isDisable={isDisable} />
     </>
   );

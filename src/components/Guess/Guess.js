@@ -1,7 +1,17 @@
 import React from "react";
 
-function Guess() {
-  return <div />;
+function Guess({ guess }) {
+  const letters = guess ? guess.split("") : Array(5).fill("");
+
+  return (
+    <p className="guess">
+      {letters.map((letter, index) => (
+        <span key={index} className="cell">
+          {letter}
+        </span>
+      ))}
+    </p>
+  );
 }
 
 export default Guess;

@@ -18,9 +18,9 @@ function Game() {
     Array(NUM_OF_GUESSES_ALLOWED).fill("")
   );
   const [currentGuess, setCurrentGuess] = React.useState(0);
-  const hasReachGuessLimit = currentGuess === NUM_OF_GUESSES_ALLOWED;
-  const isCorrectAnswer = guessResults[currentGuess - 1] === answer;
-  const isGuessInputDisabled = isCorrectAnswer || hasReachGuessLimit;
+  const isLost = currentGuess === NUM_OF_GUESSES_ALLOWED;
+  const isWon = guessResults[currentGuess - 1] === answer;
+  const isGuessInputDisabled = isWon || isLost;
 
   const onGuess = (guess) => {
     setGuessResults((guesses) => {
@@ -35,8 +35,8 @@ function Game() {
     <>
       <GuessResults guessResults={guessResults} answer={answer} />
       <GuessInput onGuess={onGuess} isDisable={isGuessInputDisabled} />
-      {isCorrectAnswer && <WonBanner numberOfGuess={currentGuess} />}
-      {hasReachGuessLimit && !isCorrectAnswer && <LostBanner answer={answer} />}
+      {isWon && <WonBanner numberOfGuess={currentGuess} />}
+      {isLost && !isWon && <LostBanner answer={answer} />}
     </>
   );
 }

@@ -11,17 +11,16 @@ import Keyboard from "../Keyboard/Keyboard";
 import { checkGuess } from "../../game-helpers";
 
 // Pick a random word on every pageload.
-const answer = sample(WORDS);
 // To make debugging easier, we'll log the solution in the console.
-console.info({ answer });
 
 const ALL_KEYS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+const DEFAULT_RESULTS = Array(NUM_OF_GUESSES_ALLOWED).fill(
+  Array(5).fill({ letter: "", status: "" })
+);
 function Game() {
-  const [guessResults, setGuessResults] = React.useState(
-    Array(NUM_OF_GUESSES_ALLOWED).fill(
-      Array(5).fill({ letter: "", status: "" })
-    )
-  );
+  const [answer, setAnswer] = React.useState(sample(WORDS));
+  console.info({ answer });
+  const [guessResults, setGuessResults] = React.useState(DEFAULT_RESULTS);
   const [keysStatus, setKeysStatus] = React.useState(
     ALL_KEYS.split("").reduce((pv, cv) => {
       pv[cv] = "initial";
@@ -34,7 +33,12 @@ function Game() {
   const isLost = currentGuess === NUM_OF_GUESSES_ALLOWED;
 
   const isGuessInputDisabled = isWon || isLost;
-
+  const resetGame = () => {
+    setIsWon(false);
+    setCurrentGuess(0);
+    setGuessResults(DEFAULT_RESULTS);
+    setAnswer(sample(WORDS));
+  };
   const onGuess = (guess) => {
     setIsWon(guess === answer);
     const guessCheck = checkGuess(guess, answer);
@@ -65,11 +69,11 @@ function Game() {
 
   return (
     <>
-      <GuessResults guessResults={guessResults} answer={answer} />
+      <GuessResults guessResults={guessResults} />
       <GuessInput onGuess={onGuess} isDisable={isGuessInputDisabled} />
       {isWon && <WonBanner numberOfGuess={currentGuess} />}
       {isLost && !isWon && <LostBanner answer={answer} />}
-      <Keyboard keys={keysStatus} />
+      <Keyboard keys={keysStatus} reset={resetGame} />
     </>
   );
 }

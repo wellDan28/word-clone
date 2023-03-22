@@ -22,8 +22,6 @@ const defaultKeyboard = [FIRST_ROW_KEYS, SECOND_ROW_KEYS, THIRD_ROW_KEYS].map(
 );
 
 function Keyboard({ keys }) {
-  console.log("🚀 ~ tcl: Keyboard ~ tcl: keys:", keys);
-
   return (
     <div className="keyboard">
       {defaultKeyboard.map((row, index) => (

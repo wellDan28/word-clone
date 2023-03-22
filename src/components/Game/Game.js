@@ -49,8 +49,11 @@ const HappyBanner = ({ numberOfGuess }) => {
   return (
     <Banner variant="happy">
       <p>
-        <strong>Congratulations!</strong> Got it in
-        <strong> {numberOfGuess} guesses</strong>.
+        <strong>Congratulations!</strong> Got it in{" "}
+        <strong>
+          {numberOfGuess === 1 ? "1 guess" : `${numberOfGuess} guesses`}
+        </strong>
+        .
       </p>
     </Banner>
   );

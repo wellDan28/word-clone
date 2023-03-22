@@ -26,8 +26,8 @@ function Game() {
     Array(NUM_OF_GUESSES_ALLOWED).fill("")
   );
   const [keys, setKeys] = React.useState(defaultKeyboard);
-
   const [currentGuess, setCurrentGuess] = React.useState(0);
+
   const isLost = currentGuess === NUM_OF_GUESSES_ALLOWED;
   const isWon = guessResults[currentGuess - 1] === answer;
   const isGuessInputDisabled = isWon || isLost;

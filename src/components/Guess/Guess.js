@@ -6,13 +6,11 @@ function Cell({ letter, status }) {
 }
 
 function Guess({ guess, answer }) {
-  const letters = guess
-    ? checkGuess(guess, answer)
-    : Array(5).fill({ letter: "", status: "" });
+  console.log("🚀 ~ tcl: Guess ~ tcl: guess:", guess);
 
   return (
     <p className="guess">
-      {letters.map(({ letter, status }, index) => (
+      {guess.map(({ letter, status }, index) => (
         <Cell key={index} letter={letter} status={status} />
       ))}
     </p>

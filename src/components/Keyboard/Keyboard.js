@@ -1,13 +1,16 @@
 import React from "react";
 
-function KeyboardRow({ row }) {
+function KeyboardRow({ row, keys }) {
   return (
     <div className="keyboard-row">
-      {row.map(({ key }, index) => (
-        <div key={index} className="keyboard-key">
-          {key}
-        </div>
-      ))}
+      {row.map(({ key }, index) => {
+        const className = `keyboard-key ${keys[key]}`;
+        return (
+          <div key={index} className={className}>
+            {key}
+          </div>
+        );
+      })}
     </div>
   );
 }
@@ -19,10 +22,12 @@ const defaultKeyboard = [FIRST_ROW_KEYS, SECOND_ROW_KEYS, THIRD_ROW_KEYS].map(
 );
 
 function Keyboard({ keys }) {
+  console.log("🚀 ~ tcl: Keyboard ~ tcl: keys:", keys);
+
   return (
     <div className="keyboard">
       {defaultKeyboard.map((row, index) => (
-        <KeyboardRow key={index} row={row} />
+        <KeyboardRow key={index} row={row} keys={keys} />
       ))}
     </div>
   );

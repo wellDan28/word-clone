@@ -230,3 +230,25 @@ h1 {
     transform: translateY(0%);
   }
 }
+
+.keyboard {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.keyboard-row {
+  display: flex;
+  justify-content: space-around;
+  flex-grow: 0;
+}
+
+.keyboard-key {
+  background-color: lightgray;
+  color: black;
+  height: 30px;
+  width: 30px;
+  line-height: 30px;
+  text-align: center;
+  border-radius: 8px;
+}
